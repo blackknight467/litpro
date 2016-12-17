@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'BandController@index', 'as' => 'bandIndex']);
+Route::get('/band/edit/{id}/', ['uses' => 'BandController@edit', 'as' => 'bandEdit'])
+    ->where('id', '[0-9]+');
+Route::put('/band/update/{id}/', ['uses' => 'BandController@update', 'as' => 'bandUpdate'])
+    ->where('id', '[0-9]+');
+Route::delete('/band/delete/{id}/', ['uses' => 'BandController@delete', 'as' => 'bandDelete'])
+    ->where('id', '[0-9]+');
