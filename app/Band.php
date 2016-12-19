@@ -26,6 +26,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Band extends Model
 {
+    public static function getBandValidationRules ($id = null)  {
+        $rules = [
+            'name' => 'required|unique:bands,name',
+            'start_date' => 'date',
+            'still_active' => 'boolean'
+        ];
+        if (!is_null($id) && is_numeric($id)) {
+            $rules['name'] = $rules['name'] . ',' . $id;
+        }
+
+        return $rules;
+    }
     /**
      * The table associated with the model.
      *

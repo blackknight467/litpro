@@ -6,4 +6,14 @@
 @import "variables";
 
 // Bootstrap
+// no need for bootstrap since I'm using the common CDN
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.add-object {
+  margin-top: 25px;
+}
+
+.row.header-row {
+  margin-left: 0;
+  margin-right: 0;
+}

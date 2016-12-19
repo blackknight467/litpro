@@ -18,6 +18,8 @@ Route::put('/band/update/{id}/', ['uses' => 'BandController@update', 'as' => 'ba
     ->where('id', '[0-9]+');
 Route::delete('/band/delete/{id}/', ['uses' => 'BandController@delete', 'as' => 'bandDelete'])
     ->where('id', '[0-9]+');
+Route::get('band/create/', ['uses' => 'BandController@create', 'as' => 'bandCreate']);
+Route::post('band/create/', ['uses' => 'BandController@create', 'as' => 'bandCreatePost']);
 
 Route::get('/albums/', ['uses' => 'AlbumController@index', 'as' => 'albumIndex']);
 Route::get('/album/edit/{id}/', ['uses' => 'AlbumController@edit', 'as' => 'albumEdit'])
@@ -26,3 +28,5 @@ Route::put('/album/update/{id}/', ['uses' => 'AlbumController@update', 'as' => '
     ->where('id', '[0-9]+');
 Route::delete('/album/delete/{id}/', ['uses' => 'AlbumController@delete@delete', 'as' => 'albumDelete'])
     ->where('id', '[0-9]+');
+Route::get('album/create/', ['uses' => 'AlbumController@create', 'as' => 'albumCreate']);
+Route::post('album/create/', ['uses' => 'AlbumController@create', 'as' => 'albumCreatePost']);

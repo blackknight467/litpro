@@ -42,9 +42,28 @@ class BandController extends BaseController
         return view('bandlist', ['bands' => $bands->paginate(50), 'sort' => $sort, 'order' => $order]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_GET) {
+            return view('bandcreate');
+        } elseif ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_POST) {
+            $this->validate($request, Band::getBandValidationRules());
 
+            Band::create([
+                'name' => $request->get('name'),
+                'start_date' => (!empty($request->get('start_date'))) ? $request->get('start_date') : null,
+                'website' => $request->get('website'),
+                'still_active' => boolval($request->get('still_active')),
+            ]);
+
+            // redirect back to list
+            \Session::flash('message', 'Successfully created band!');
+            return redirect()->route('bandIndex');
+        }
+
+        // if the method is not get or post, well they shouldn't be here
+        abort(Response::HTTP_NOT_FOUND);
+        return false; // this is just here so that phpstorm won't complain about a missing return statement
     }
 
     public function edit($id)
@@ -63,13 +82,7 @@ class BandController extends BaseController
             abort(Response::HTTP_NOT_FOUND);
         }
 
-        $rules = [
-            'name' => 'required|unique:bands,name,' . $id,
-            'start_date' => 'date',
-            'still_active' => 'boolean'
-        ];
-
-        $this->validate($request, $rules);
+        $this->validate($request, Band::getBandValidationRules($id));
 
         $band->name = $request->get('name');
         $band->start_date = (!empty($request->get('start_date'))) ? $request->get('start_date') : null;
@@ -80,7 +93,6 @@ class BandController extends BaseController
         // redirect back to list
         \Session::flash('message', 'Successfully updated band!');
         return redirect()->route('bandIndex');
-
     }
 
     public function delete($id)

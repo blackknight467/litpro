@@ -148,7 +148,7 @@ class LitProSeeder extends Seeder
         ]);
 
         Album::create([
-            'name' => "Introducing... The Beatles",
+            'name' => "A Fever You Can't Sweat Out",
             'band_id' => $panic->id,
             'recorded_date' => new DateTime('2005-6-1'),
             'release_date' => new DateTime('2005-9-27'),

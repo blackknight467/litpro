@@ -19,13 +19,18 @@ composer install
 php artisan ide-helper:generate
 ```
 Note: running composer update will automatically regenerate the ide helper files
-3. Create your db then run 
+4. Create your db then run 
 ```bash
 php artisan migrate
 ```
-4. Seed your database with data
+5. Seed your database with data
 ```bash
 php artisan db:seed
+```
+
+6. (optional) Install npm packages if you want to work with css and js
+```bash
+npm install
 ```
 
 ## About Laravel

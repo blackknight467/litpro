@@ -3,7 +3,8 @@
 @section('title', 'Band List')
 
 @section('content')
-    <h1>Band List</h1>
+    <h1 class="pull-left">Band List</h1>
+    <a class="btn btn-primary pull-right add-object" href="{{ URL::route('bandCreate') }}"><i class="fa fa-plus"></i> Add Band</a>
     <table class="table table-striped">
         <thead>
             <tr>

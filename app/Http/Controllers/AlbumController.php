@@ -68,9 +68,32 @@ class AlbumController extends BaseController
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_GET) {
+            return view('albumcreate', ['bands' => \DB::table('bands')->orderBy('name')->pluck('name','id')]);
+        } elseif ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_POST) {
+            $this->validate($request, Band::getBandValidationRules());
 
+            Album::create([
+                'name' => $request->get('name'),
+                'band_id' => $request->get('band_id'),
+                'recorded_date' => (!empty($request->get('recorded_date'))) ? $request->get('recorded_date') : null,
+                'release_date' => (!empty($request->get('release_date'))) ? $request->get('release_date') : null,
+                'number_of_tracks' => (!empty($request->get('number_of_tracks'))) ? $request->get('number_of_tracks') : null,
+                'label' => $request->get('label'),
+                'producer' => $request->get('producer'),
+                'genre' => $request->get('genre'),
+            ]);
+
+            // redirect back to list
+            \Session::flash('message', 'Successfully created album!');
+            return redirect()->route('albumIndex');
+        }
+
+        // if the method is not get or post, well they shouldn't be here
+        abort(Response::HTTP_NOT_FOUND);
+        return false; // this is just here so that phpstorm won't complain about a missing return statement
     }
 
     public function edit($id)

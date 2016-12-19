@@ -3,10 +3,13 @@
 @section('title', 'Album List')
 
 @section('content')
-    <h1>Album List</h1>
+    <div class="row header-row">
+        <h1 class="pull-left">Album List</h1>
+        <a class="btn btn-primary pull-right add-object" href="{{ URL::route('albumCreate') }}"><i class="fa fa-plus"></i> Add Album</a>
+    </div>
     {{ Form::open(['url' => URL::route('albumIndex'), 'method' => \Symfony\Component\HttpFoundation\Request::METHOD_GET, 'class' => 'form-horizontal']) }}
     <div class="form-group col-sm-6 col-xs-12">
-        {{ Form::label('band', 'Filter By Band', ['class' => 'control-label col-xs-3']) }}
+        {{ Form::label('band', 'Filter Band', ['class' => 'control-label col-xs-3']) }}
         <div class="col-xs-6">
             <select class="form-control" name="band">
                 <option value="">All Bands</option>
