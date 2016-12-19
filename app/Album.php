@@ -35,6 +35,23 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Album extends Model
 {
+    public static function getAlbumValidationRules ($id = null, $band_id = null)  {
+        $rules = [
+            'name' => 'required|unique:albums,name',
+            'band_id' => 'required|exists:bands,id',
+            'recorded_date' => 'date',
+            'release_date' => 'date',
+            'number_of_tracks' => 'integer|min:0'
+        ];
+        if (!is_null($id) && is_numeric($id)) {
+            $rules['name'] = $rules['name'] . ',' . $id;
+            if (!is_null($band_id) && is_numeric($band_id)) {
+                $rules['name'] = $rules['name'] . ',id,band_id,' . $band_id;
+            }
+        }
+
+        return $rules;
+    }
     /**
      * The table associated with the model.
      *

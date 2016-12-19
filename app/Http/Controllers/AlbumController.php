@@ -73,7 +73,7 @@ class AlbumController extends BaseController
         if ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_GET) {
             return view('albumcreate', ['bands' => \DB::table('bands')->orderBy('name')->pluck('name','id')]);
         } elseif ($request->getMethod() == \Symfony\Component\HttpFoundation\Request::METHOD_POST) {
-            $this->validate($request, Band::getBandValidationRules());
+            $this->validate($request, Album::getAlbumValidationRules());
 
             Album::create([
                 'name' => $request->get('name'),
@@ -112,15 +112,8 @@ class AlbumController extends BaseController
         if (!$album) {
             abort(Response::HTTP_NOT_FOUND);
         }
-        $rules = [
-            'name' => 'required|unique:albums,name,'.$id.',id,band_id,' . $album->band_id,
-            'band_id' => 'required|exists:bands,id',
-            'recorded_date' => 'date',
-            'release_date' => 'date',
-            'number_of_tracks' => 'integer|min:0'
-        ];
 
-        $this->validate($request, $rules);
+        $this->validate($request, Album::getAlbumValidationRules($id, $album->band_id));
 
         $album->name = $request->get('name');
         $album->band_id = $request->get('band_id');
