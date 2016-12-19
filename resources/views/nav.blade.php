@@ -15,7 +15,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ URL::route('bandIndex') }}"><i class="fa fa-group"></i> Bands</a></li>
-                <li><a href="{{ URL::route('bandIndex') }}"><i class="fa fa-play"></i> Albums</a></li>
+                <li><a href="{{ URL::route('albumIndex') }}"><i class="fa fa-play"></i> Albums</a></li>
             </ul>
         </div>
     </div>

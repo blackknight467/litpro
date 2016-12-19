@@ -48,7 +48,7 @@ class LitProSeeder extends Seeder
 
         $this->command->info('Bands have been seeded');
 
-        $sandm = Album::create([
+        Album::create([
             'name' => 'S&M',
             'band_id' => $metalica->id,
             'recorded_date' => new DateTime('1999-4-21'),
@@ -57,6 +57,105 @@ class LitProSeeder extends Seeder
             'label' => 'Elektra',
             'producer' => 'Bob Rock',
             'genre' => 'Heavy metal'
+        ]);
+
+        Album::create([
+            'name' => "Kill 'Em All",
+            'band_id' => $metalica->id,
+            'recorded_date' => new DateTime('1983-5-10'),
+            'release_date' => new DateTime('1983-7-25'),
+            'number_of_tracks' => 10,
+            'label' => 'Megaforce',
+            'producer' => 'Paul Curcio',
+            'genre' => 'Thrash metal'
+        ]);
+
+        Album::create([
+            'name' => "Ride the Lightning",
+            'band_id' => $metalica->id,
+            'recorded_date' => new DateTime('1984-2-20'),
+            'release_date' => new DateTime('1984-7-27'),
+            'number_of_tracks' => 8,
+            'label' => 'Megaforce',
+            'producer' => 'Flemming Rasmussen',
+            'genre' => 'Thrash metal'
+        ]);
+
+        Album::create([
+            'name' => "Master of Puppets",
+            'band_id' => $metalica->id,
+            'recorded_date' => new DateTime('1985-9-1'),
+            'release_date' => new DateTime('1986-3-3'),
+            'number_of_tracks' => 8,
+            'label' => 'Elektra',
+            'producer' => 'Flemming Rasmussen',
+            'genre' => 'Thrash metal'
+        ]);
+
+        Album::create([
+            'name' => "...And Justice for All",
+            'band_id' => $metalica->id,
+            'recorded_date' => new DateTime('1988-1-28'),
+            'release_date' => new DateTime('1988-8-25'),
+            'number_of_tracks' => 8,
+            'label' => 'Elektra',
+            'producer' => 'Flemming Rasmussen',
+            'genre' => 'Thrash metal'
+        ]);
+
+        Album::create([
+            'name' => "Fallen",
+            'band_id' => $evanescence->id,
+            'recorded_date' => new DateTime('2002-8-1'),
+            'release_date' => new DateTime('2003-3-4'),
+            'number_of_tracks' => 12,
+            'label' => 'Wind-up',
+            'producer' => 'Dave Fortman',
+            'genre' => 'Nu metal'
+        ]);
+
+        Album::create([
+            'name' => "The Open Door",
+            'band_id' => $evanescence->id,
+            'recorded_date' => new DateTime('2005-9-1'),
+            'release_date' => new DateTime('2006-9-25'),
+            'number_of_tracks' => 13,
+            'label' => 'Wind-up',
+            'producer' => 'Dave Fortman',
+            'genre' => 'Alternative metal'
+        ]);
+
+        Album::create([
+            'name' => "The Open Door",
+            'band_id' => $evanescence->id,
+            'recorded_date' => new DateTime('2005-9-1'),
+            'release_date' => new DateTime('2006-9-25'),
+            'number_of_tracks' => 13,
+            'label' => 'Wind-up',
+            'producer' => 'Dave Fortman',
+            'genre' => 'Alternative metal'
+        ]);
+
+        Album::create([
+            'name' => "Introducing... The Beatles",
+            'band_id' => $beatles->id,
+            'recorded_date' => new DateTime('1962-9-11'),
+            'release_date' => new DateTime('1964-1-10'),
+            'number_of_tracks' => 12,
+            'label' => 'Vee-Jay',
+            'producer' => 'George Martin',
+            'genre' => 'Rock and roll'
+        ]);
+
+        Album::create([
+            'name' => "Introducing... The Beatles",
+            'band_id' => $panic->id,
+            'recorded_date' => new DateTime('2005-6-1'),
+            'release_date' => new DateTime('2005-9-27'),
+            'number_of_tracks' => 13,
+            'label' => 'Fueled by Ramen',
+            'producer' => 'Matt Squire',
+            'genre' => 'Pop punk'
         ]);
 
         $this->command->info('Albums have been seeded');

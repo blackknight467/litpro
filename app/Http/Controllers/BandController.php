@@ -11,7 +11,7 @@ class BandController extends BaseController
 {
     public function index(Request $request)
     {
-        $bands = Band::orderBy('id')->paginate(50);
+        $bands = null;
         $sort = null;
         $order = null;
 
@@ -31,10 +31,15 @@ class BandController extends BaseController
                         $order = strtoupper($request->get('order'));
                     }
                 }
-                $bands = Band::orderBy($sort, $order)->paginate(50);
+                $bands = Band::orderBy($sort, $order);
             }
         }
-        return view('bandlist', ['bands' => $bands, 'sort' => $sort, 'order' => $order]);
+
+        if ($bands == null) {
+            $bands = Band::orderBy('id');
+        }
+
+        return view('bandlist', ['bands' => $bands->paginate(50), 'sort' => $sort, 'order' => $order]);
     }
 
     public function create()
@@ -53,6 +58,11 @@ class BandController extends BaseController
 
     public function update(Request $request, $id)
     {
+        $band = Band::find($id);
+        if (!$band) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+
         $rules = [
             'name' => 'required|unique:bands,name,' . $id,
             'start_date' => 'date',
@@ -61,7 +71,6 @@ class BandController extends BaseController
 
         $this->validate($request, $rules);
 
-        $band = Band::find($id);
         $band->name = $request->get('name');
         $band->start_date = (!empty($request->get('start_date'))) ? $request->get('start_date') : null;
         $band->website = $request->get('website');
@@ -77,6 +86,10 @@ class BandController extends BaseController
     public function delete($id)
     {
         $band = Band::find($id);
+        if (!$band) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+
         foreach ($band->albums as $album) {
             $album->delete();
         }

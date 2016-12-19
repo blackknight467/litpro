@@ -18,3 +18,11 @@ Route::put('/band/update/{id}/', ['uses' => 'BandController@update', 'as' => 'ba
     ->where('id', '[0-9]+');
 Route::delete('/band/delete/{id}/', ['uses' => 'BandController@delete', 'as' => 'bandDelete'])
     ->where('id', '[0-9]+');
+
+Route::get('/albums/', ['uses' => 'AlbumController@index', 'as' => 'albumIndex']);
+Route::get('/album/edit/{id}/', ['uses' => 'AlbumController@edit', 'as' => 'albumEdit'])
+    ->where('id', '[0-9]+');
+Route::put('/album/update/{id}/', ['uses' => 'AlbumController@update', 'as' => 'albumUpdate'])
+    ->where('id', '[0-9]+');
+Route::delete('/album/delete/{id}/', ['uses' => 'AlbumController@delete@delete', 'as' => 'albumDelete'])
+    ->where('id', '[0-9]+');

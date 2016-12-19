@@ -7,6 +7,27 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Setup steps
+
+1. Install vendors 
+```bash
+composer install
+```
+2. Create your .env file.  Use .env.example as a template
+3. If you're using an IDE, you may want to generate the IDE helper files by running 
+```bash
+php artisan ide-helper:generate
+```
+Note: running composer update will automatically regenerate the ide helper files
+3. Create your db then run 
+```bash
+php artisan migrate
+```
+4. Seed your database with data
+```bash
+php artisan db:seed
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:

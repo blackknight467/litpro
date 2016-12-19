@@ -15,29 +15,29 @@
         </div>
     @endif
 
-    {{ Form::model($band, ['route' => ['bandUpdate', $band->id], 'method' => 'PUT']) }}
+    {{ Form::model($band, ['route' => ['bandUpdate', $band->id], 'method' => \Symfony\Component\HttpFoundation\Request::METHOD_PUT]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', null, array('class' => 'form-control')) }}
+        {{ Form::text('name', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('start_date', 'Start Date') }}
-        {{ Form::date('start_date', null, array('class' => 'form-control')) }}
+        {{ Form::date('start_date', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('website', 'Website') }}
-        {{ Form::text('website', null, array('class' => 'form-control')) }}
+        {{ Form::text('website', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('still_active', 'Still Active') }}
-        {{ Form::select('still_active', [0 => 'No', 1 => 'Yes'], null, array('class' => 'form-control')) }}
+        {{ Form::select('still_active', [0 => 'No', 1 => 'Yes'], null, ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 
@@ -51,7 +51,7 @@
         <tbody>
         @foreach($band->albums as $album)
             <tr>
-                <td>{{ $album->name }}</td>
+                <td><a href="{{ URL::route('albumEdit', ['id' => $album->id]) }}">{{ $album->name }}</a></td>
             </tr>
         @endforeach
         </tbody>

@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Album whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Album whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Query\Builder|\App\Album fromBand($bandId)
  */
 class Album extends Model
 {
@@ -52,5 +53,9 @@ class Album extends Model
 
     public function band() {
         return $this->belongsTo(Band::class);
+    }
+
+    public function scopeFromBand($query, $bandId) {
+        return $query->where('band_id', $bandId);
     }
 }

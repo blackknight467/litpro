@@ -27,9 +27,9 @@
                 </td>
                 <td>
                     <a class="btn btn-default" href="{{ URL::route('bandEdit', ['id' => $band->id]) }}">Edit</a>
-                    {{ Form::open(array('url' => URL::route('bandDelete', ['id' => $band->id]))) }}
+                    {{ Form::open(['url' => URL::route('bandDelete', ['id' => $band->id])]) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                    {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                     {{ Form::close() }}
                 </td>
             </tr>
